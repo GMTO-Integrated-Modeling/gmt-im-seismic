@@ -1,4 +1,8 @@
-| FEM | Lateral stiffness [N/m] |
+# GMT Integrated Modeling for Seismic Analyses
+
+## FEM models
+
+| FEM ID | SIS lateral stiffness [N/m] |
 |:---:|:------------------:|
 | 20240408_1535 | 0.96e9 |
 | 20241003_1800 | 1.36e9 |
