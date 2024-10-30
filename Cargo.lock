@@ -545,18 +545,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "color_quant"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
-
-[[package]]
-name = "colorous"
-version = "1.0.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f06d1dcee094f7b58bef5c0b6abb4f9dc1cb3638f22113fb0f2c7a7dd1b73bd"
-
-[[package]]
 name = "console"
 version = "0.15.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -706,16 +694,6 @@ name = "dos-uid-derive"
 version = "5.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8718723acfbed6bc862c637ccadc61054a4f92ecc49eeca1b14bfd0450def587"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.85",
-]
-
-[[package]]
-name = "dos-uid-derive"
-version = "5.0.1"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -910,16 +888,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gif"
-version = "0.13.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fb2d69b19215e18bb912fa30f7ce15846e301408695e44e0ef719f1da9e19f2"
-dependencies = [
- "color_quant",
- "weezl",
-]
-
-[[package]]
 name = "gimli"
 version = "0.31.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -933,8 +901,9 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
 name = "gmt-fem"
-version = "5.1.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+version = "5.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "16cb114fbdd2da5a594423aac77137db7738507ed06e61199f5e7d3c32a4f308"
 dependencies = [
  "anyhow",
  "arrow",
@@ -956,8 +925,9 @@ dependencies = [
 
 [[package]]
 name = "gmt-fem-code-builder"
-version = "2.2.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+version = "2.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4ab124803485d226259e3a98f4ba3979164944730a437557d2b0735d32db8ae"
 dependencies = [
  "anyhow",
  "arrow",
@@ -974,10 +944,10 @@ dependencies = [
  "anyhow",
  "gmt-fem",
  "gmt_dos-actors",
- "gmt_dos-actors-clients_interface 1.3.2",
+ "gmt_dos-actors-clients_interface",
  "gmt_dos-clients",
  "gmt_dos-clients_arrow",
- "gmt_dos-clients_fem",
+ "gmt_dos-clients_fem 5.0.0",
  "gmt_dos-clients_io",
  "gmt_dos-clients_m1-ctrl",
  "gmt_dos-clients_mount",
@@ -990,14 +960,15 @@ dependencies = [
 [[package]]
 name = "gmt_dos-actors"
 version = "11.1.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "47177055adf39dd70f7d4fadf8a37767c2e4f8060959c84c5803c5e1f347f603"
 dependencies = [
  "anyhow",
  "async-trait",
  "chrono",
  "flume",
  "futures",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
  "gmt_dos-actors_dsl",
  "html-escape",
  "humantime",
@@ -1012,11 +983,12 @@ dependencies = [
 
 [[package]]
 name = "gmt_dos-actors-clients_interface"
-version = "1.3.1"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+version = "1.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7bde028b4622b67efc1cc87c682eb86aa9956511fb68f9df9980d89bfee7d1cf"
 dependencies = [
  "bincode",
- "dos-uid-derive 5.0.1 (git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev)",
+ "dos-uid-derive",
  "log",
  "paris",
  "serde",
@@ -1024,21 +996,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "gmt_dos-actors-clients_interface"
-version = "1.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bde028b4622b67efc1cc87c682eb86aa9956511fb68f9df9980d89bfee7d1cf"
-dependencies = [
- "dos-uid-derive 5.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "log",
- "paris",
- "thiserror",
-]
-
-[[package]]
 name = "gmt_dos-actors_dsl"
 version = "2.1.2"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "634176900fb5fbb305576bbdde7dbebbc4ddc285de761532b47a4aa2e528455f"
 dependencies = [
  "prettyplease",
  "proc-macro2",
@@ -1050,11 +1011,10 @@ dependencies = [
 [[package]]
 name = "gmt_dos-clients"
 version = "4.4.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9062b93e5b0791bd1da845989b94fecd27b1eae8c4be3a3c2732c49b2084f6ca"
 dependencies = [
- "colorous",
- "gif",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
  "indicatif",
  "serde",
  "thiserror",
@@ -1063,11 +1023,12 @@ dependencies = [
 [[package]]
 name = "gmt_dos-clients_arrow"
 version = "2.1.1"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cc33235b0a566a6fe60f7da90e31e8451a3fd0c6be62fd9eb42a13d08aab9638"
 dependencies = [
  "arrow",
  "gmt_dos-actors",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
  "log",
  "parquet",
  "paste",
@@ -1078,7 +1039,8 @@ dependencies = [
 [[package]]
 name = "gmt_dos-clients_fem"
 version = "4.4.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7a66bf9141ec1485989d4d67f48d6761e22f04ad892dddcb348a392588534d96"
 dependencies = [
  "anyhow",
  "arrow",
@@ -1086,7 +1048,32 @@ dependencies = [
  "geotrans 0.2.2",
  "gmt-fem",
  "gmt-fem-code-builder",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
+ "gmt_dos-clients",
+ "gmt_dos-clients_io",
+ "log",
+ "nalgebra",
+ "num-complex",
+ "parquet",
+ "rayon",
+ "serde-pickle 1.1.1",
+ "thiserror",
+ "zip",
+]
+
+[[package]]
+name = "gmt_dos-clients_fem"
+version = "5.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "36010a03470cd3eb6f4bf64f72c1ad03a044ca5133e390c0eb6796873fcd9a0e"
+dependencies = [
+ "anyhow",
+ "arrow",
+ "bytes",
+ "geotrans 0.2.2",
+ "gmt-fem",
+ "gmt-fem-code-builder",
+ "gmt_dos-actors-clients_interface",
  "gmt_dos-clients",
  "gmt_dos-clients_io",
  "log",
@@ -1102,26 +1089,28 @@ dependencies = [
 [[package]]
 name = "gmt_dos-clients_io"
 version = "4.2.1"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2afae8f1d06ae6c7d5a303983d4301cf1a4ac2b169fc7dcef8af02d769719002"
 dependencies = [
  "anyhow",
  "gmt-fem-code-builder",
  "gmt_dos-actors",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
 ]
 
 [[package]]
 name = "gmt_dos-clients_m1-ctrl"
 version = "4.1.1"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5e8da89ad8ffd55137056d1d30c09a74ad296ae2e0156d20edfd9d5bef9ce15"
 dependencies = [
  "anyhow",
  "async-trait",
  "gmt-fem",
  "gmt_dos-actors",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
  "gmt_dos-clients",
- "gmt_dos-clients_fem",
+ "gmt_dos-clients_fem 4.4.0",
  "gmt_dos-clients_io",
  "gmt_m1-ctrl_center-actuators",
  "gmt_m1-ctrl_hardpoints-dynamics",
@@ -1134,14 +1123,15 @@ dependencies = [
 [[package]]
 name = "gmt_dos-clients_mount"
 version = "4.1.0"
-source = "git+https://github.com/rodrigo-romano/dos-actors.git?branch=mnt-ctrl-dev#437280badf87f1ddc0e8696789063ce2da6c60dd"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2d777230e597a5850b291e9062715fd36b030d4708f13863c3336124460c1b6"
 dependencies = [
  "anyhow",
  "gmt-fem-code-builder",
  "gmt_dos-actors",
- "gmt_dos-actors-clients_interface 1.3.1",
+ "gmt_dos-actors-clients_interface",
  "gmt_dos-clients_arrow",
- "gmt_dos-clients_fem",
+ "gmt_dos-clients_fem 4.4.0",
  "gmt_dos-clients_io",
  "gmt_mount-ctrl_controller",
  "gmt_mount-ctrl_driver",
@@ -2485,12 +2475,6 @@ name = "wasm-bindgen-shared"
 version = "0.2.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "65fc09f10666a9f147042251e0dda9c18f166ff7de300607007e96bdebc1068d"
-
-[[package]]
-name = "weezl"
-version = "0.1.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "53a85b86a771b1c87058196170769dd264f66c0782acf1ae6cc51bfd64b39082"
 
 [[package]]
 name = "which"
