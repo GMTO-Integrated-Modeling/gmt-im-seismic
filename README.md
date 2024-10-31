@@ -1,13 +1,15 @@
 # GMT Integrated Modeling for Seismic Analyses
 
-This repository provides the code to simulate the effect of RLE seismic events on the GMT. The simulations employ the dos-actors framework based on the Rust programming language.
+This repository provides the code to simulate the effect of RLE seismic events on the GMT. The simulations employ the [dos-actors](https://rconan.github.io/dos-actors/) framework based on the [Rust](https://www.rust-lang.org/) programming language.
 
-The RLE ground accelerations available from the [1K RLE SSSHA release](https://github.com/GMTO/seismic/releases) must be copied to the [gmt-im-seismic/data/](https://github.com/GMTO-Integrated-Modeling/gmt-im-seismic/tree/main/data) folder to run the simulations. Those files have ground acceleration time series upsampled to 1KHz (see CR-05354 for details on the upsampling method). Simulations also require a zip file containing the modal model and the static solution of the telescope FEM. Structural model files are available on the AWS GMT-IM s3 drive. The environmental variable `FEM_REPO` specifies the location of the zip file.
+The RLE ground accelerations available from the [1K RLE SSSHA release](https://github.com/GMTO/seismic/releases) must be copied to the [gmt-im-seismic/data/](https://github.com/GMTO-Integrated-Modeling/gmt-im-seismic/tree/main/data) folder to run the simulations. Those files have ground acceleration time series upsampled to 1KHz (see CR-05354 for details on the upsampling method). Simulations also require a zip file containing the modal model and the static solution of the telescope FEM. 
+Structural model files are available both on the shared drive `drobo-im.gmto.org/im` in the `Integrated Modeling/gmt-im-seismic` folder an in the AWS GMT-IM s3 drive. 
+The environmental variable `FEM_REPO` specifies the location of the zip file.
 
 
 ![](data/model.dot.png)
 
-The simulation results are recorded in a parquet file in the data folder. The simulation results are recorded in a parquet file in the data folder. The following signals are registered:
+The simulation results are recorded in a parquet file in the data folder. The following signals are registered:
 - **OSS00GroundAcc** (3): ground accelerations (along x, y, and z axes of the OSS coordinate system, respectively) applied to the structural model.
 - **OSS00Ground6D** (6): rigid-body motions (TxyzRxyz) of the node in the pier interface ("large" mass element).
 - **Pier6D** (12): rigid-body motions of two nodes in the pier. The first six are Txyz and Rxyz, respectively, of the node at the bottom, and the last six correspond to the node at the top of the pier.
@@ -20,7 +22,7 @@ A Python notebook (`processing.ipynb`) can be used to visualize the data and per
 
 ![](pierSHA_latKs_sens.png)
 
-The considered models and the corresponding lateral stiffness value are reported in the table below. 
+The considered FEM models and the corresponding lateral stiffness value are reported in the table below. 
 
 | FEM ID | SIS lateral stiffness [N/m] |
 |:---:|:------------------:|
@@ -29,5 +31,11 @@ The considered models and the corresponding lateral stiffness value are reported
 | 20230817_1808 | 3.00e9 |
 | 20241021_1535 | 9.00e9 |
 
+The simulation can be run with:
+```
+MOUNT_MODEL=MOUNT_FDR_1kHz FEM_REPO=<path-to-fem-repo> cargo run --release
+```
+where `<path-to-fem-repo>` has to be replaced with the local path.
+The simulation iterates through each of the RLE acceleration time series.
 
 
