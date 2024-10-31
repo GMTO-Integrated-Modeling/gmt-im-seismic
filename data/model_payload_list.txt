@@ -1,0 +1,27 @@
+Corrector-Atmospheric Dispersion Compensator (stowed)
+M3 (stowed)
+Acquisition, Guide and Wavefront Sensing Probe A (stowed)
+Acquisition, Guide and Wavefront Sensing Probe B (stowed)
+Acquisition, Guide and Wavefront Sensing Probe C (stowed)
+Acquisition, Guide and Wavefront Sensing Probe D (stowed)
+Laser Guidestar LPA pair 1
+Laser Guidestar LPA pair 2
+Laser Guidestar LPA pair 3
+Laser Guidestar Acquisition System
+Prime Focus Assembly: Instrument Calibration (stowed)
+Prime Focus Assembly: Wavefront Control Calibration (stowed)
+Instrument at Folded Port B
+Instrument at Folded Port C
+Instrument at Folded Port D
+Instrument on Instrument Platform
+Gravity Invariant Station: G-CLEF Pick-Off (stowed)
+Gravity Invariant Station: G-CLEF Thermal Enclosure, Fiber Lower Link & Base
+Gravity Invariant Station: G-CLEF Vacuum Vessel
+Telescope Metrology System Laser Tracker 1
+Telescope Metrology System Laser Tracker 2
+Telescope Metrology System Laser Tracker 3
+Instrument at Direct Gregorian Port A (stowed)
+Instrument at Direct Gregorian Port B (employed)
+Instrument at Direct Gregorian Port D (stowed)
+Instrument Gravity Invariant Auxiliary Port -X (stowed)
+Instrument Gravity Invariant Auxiliary Port +X (stowed)
