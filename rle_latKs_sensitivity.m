@@ -21,7 +21,10 @@ struct_models = [...
     "20230817_1808";...
     "20241021_1535"];
 
+% Flag to include the ground SA in the comparison
 show_gndACC = true;
+% Flag to save SA comparison plot
+save_sa_comp_plot = false;
 
 %% Spectral Acceleration Settings
 %%
@@ -40,10 +43,13 @@ q = 1/(2*zeta); % resonance Q factor, Q = f/FWHM
 nFreqs = round(log(fmax/FMIN)/log(1+1/(q*STEPS)));
 fSRS = logspace(log10(FMIN),log10(fmax),nFreqs); % frequency vector [Hz]
 
-%% 
+%% SA calculation loop
+%%
 % preallocate result
 pierSHA = zeros(nFreqs, 7, numel(struct_models));
-gndSHA = zeros(nFreqs, 7, numel(struct_models));
+gndSHA = zeros(nFreqs, 7);
+pierSHAv = zeros(nFreqs, 7, numel(struct_models));
+gndSHAv = zeros(nFreqs, 7);
 
 tic
 for k_model = 1:numel(struct_models)
@@ -60,7 +66,6 @@ for k_model = 1:numel(struct_models)
             parquetINFO = parquetinfo(dt_file);
             sssha_data = parquetread(dt_file,"SampleRate",1e3,...
                 "SelectedVariableNames",parquetINFO.VariableNames);
-            % "OSSPayloads6D";"OSS00GroundAcc";"OSSHardpointD";"OSSM1Lcl";"MountEncoders"
         catch
             warning('Unable to run parquetread(). Try Matlab 2022b, or later.');
         end
@@ -81,19 +86,17 @@ for k_model = 1:numel(struct_models)
         for j_aax = 1:2 % 1:H1, 2:H2
             sa_data(:,j_aax) = SpectralA04(pier_acc_dt(:,j_aax), fSRS, dT, zeta);        
 
-            if(show_gndACC) %k_model==1
+            if(show_gndACC && (k_model==1))
                 gnd_sa_data(:,j_aax) = SpectralA04(gnd_acc_dt(:,j_aax), fSRS, dT, zeta);
-
-%                 if(j_aax==1), tmp1 = SpectralA04(gnd_ACC(:,1), fSRS, dT, zeta);
-%                 else
-%                     gndSHA(:,i_rle) = exp(mean(log([...
-%                         tmp1,SpectralA04(gnd_ACC(:,2), fSRS, dT, zeta)]...
-%                         ),2));
-%                 end
             end
         end
-        gndSHA(:,i_rle,k_model) = exp(mean(log(gnd_sa_data),2));
+        
         pierSHA(:,i_rle,k_model) =  exp(mean(log(sa_data),2));
+        pierSHAv(:,i_rle,k_model) =  SpectralA04(pier_acc_dt(:,3), fSRS, dT, zeta);
+        if(k_model == 1)
+            gndSHA(:,i_rle) = exp(mean(log(gnd_sa_data),2));
+            gndSHAv(:,i_rle) = SpectralA04(gnd_acc_dt(:,3), fSRS, dT, zeta);
+        end
     end
 end
 toc
@@ -136,8 +139,11 @@ title(sprintf('RLE Stiffness Sensitiviy (zeta=%.3g)',zeta));
 xlabel('Frequency (Hz)');ylabel('(B) Pier Horizontal Acc (g)');
 grid on;
 hold off;
-exportgraphics(hsa_fig, 'pierSHA_latKs_sens.png', 'Resolution', 300); 
-
+sa_comp_plot_fname = 'pierSHA_latKs_sens.png';
+if(save_sa_comp_plot || ~exist(sa_comp_plot_fname,"file"))
+    exportgraphics(hsa_fig, sa_comp_plot_fname, 'Resolution', 300);
+    fprintf("Comparison plot saved as %s\n",sa_comp_plot_fname);
+end
 
 
 
