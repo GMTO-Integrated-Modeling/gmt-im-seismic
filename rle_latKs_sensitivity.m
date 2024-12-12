@@ -56,10 +56,11 @@ for k_model = 1:numel(struct_models)
     model_label_id = struct_models(k_model);
     model_folder = dir(fullfile(s3_path,...
         sprintf('*%s*largeMass',model_label_id)));
+    model_path = model_folder.name;
     %  Loop over the RLE cases
     parfor i_rle = 1:numel(rle_cases)
         sssha_data = [];
-        dt_file = fullfile(s3_path, model_folder.name,...
+        dt_file = fullfile(s3_path, model_path,...
             sprintf(dt_fname_prot,model_label_id,rle_cases(i_rle)));
         fprintf("Post-processing data from %s\n",dt_file);
         try
@@ -80,8 +81,9 @@ for k_model = 1:numel(struct_models)
         pier_acc_dt = 1/dT*diff(1/dT*diff(pier_D(1:3,:)'));
         %
         gnd_acc_dt = 1/dT*diff(1/dT*diff(gnd_D(1:3,:)'));
-        sa_data = zeros(nFreqs, 2); % preallocate SA result
-        gnd_sa_data = zeros(nFreqs, 2); % preallocate SA result
+        % Preallocate SA result
+        sa_data = zeros(nFreqs, 2);
+        gnd_sa_data = zeros(nFreqs, 2);
 
         for j_aax = 1:2 % 1:H1, 2:H2
             sa_data(:,j_aax) = SpectralA04(pier_acc_dt(:,j_aax), fSRS, dT, zeta);        
