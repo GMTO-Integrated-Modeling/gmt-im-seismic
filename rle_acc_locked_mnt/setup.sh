@@ -1,0 +1,2 @@
+export FEM_REPO=/home/rromano/Workspace/gmt-data/20250306_2131_zen_30_M1_202110_FSM_202305_Mount_202305_pier_202411_heavy_SIReq_movingGround_lockedDrives
+export FLOWCHART=dot
