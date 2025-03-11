@@ -4,7 +4,7 @@
 
 use gmt_dos_actors::actorscript;
 use gmt_dos_clients::Source; //{Signals, Signal, }
-use gmt_dos_clients_fem::{DiscreteModalSolver, ExponentialMatrix};
+use gmt_dos_clients_fem::{solvers::ExponentialMatrix, DiscreteModalSolver};
 use gmt_dos_clients_io::{
     gmt_fem::{
         inputs::OSS00GroundAcc,
@@ -26,10 +26,12 @@ cargo run --release --bin rle_acc_locked_mnt
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    env::set_var(
-        "DATA_REPO",
-        Path::new(env!("CARGO_MANIFEST_DIR")).join("data"),
-    );
+    unsafe {
+        env::set_var(
+            "DATA_REPO",
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("data"),
+        );
+    }
     let sim_sampling_frequency = 1000;
     //let n_step = sssha_length;//10000; //
     let mut fem = FEM::from_env()?;
@@ -54,7 +56,7 @@ async fn main() -> anyhow::Result<()> {
             .ins::<OSS00GroundAcc>()
             .outs::<Pier6D>()
             .outs::<OSS00Ground6D>()
-            .outs::<OSSPayloads6D>()            
+            .outs::<OSSPayloads6D>()
             .build()?;
         println!("{state_space}");
 
@@ -84,11 +86,10 @@ async fn main() -> anyhow::Result<()> {
             .take(2)
             .collect::<Vec<_>>()
             .join("_");
-        model_logging_1.lock().await.to_parquet(format!(
-            "model-{}-RLE{:02}_.parquet",
-            fem_id, id
-        ))?;
+        model_logging_1
+            .lock()
+            .await
+            .to_parquet(format!("model-{}-RLE{:02}_.parquet", fem_id, id))?;
     }
     Ok(())
 }
-

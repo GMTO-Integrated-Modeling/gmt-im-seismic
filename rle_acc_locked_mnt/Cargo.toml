@@ -13,6 +13,16 @@ gmt_dos-clients_fem = "5.0.0"
 gmt_dos-clients_io = "4.2.1"
 interface = { version = "1.3.2", package = "gmt_dos-actors-clients_interface" }
 matio-rs = { version = "1.3.2", features = ["nalgebra"] }
-nalgebra = "0.32"
+nalgebra = "0.33"
 skyangle = "0.2.2"
 tokio = { version = "1.41.0", features = ["macros", "rt-multi-thread"] }
+
+[patch.crates-io]
+gmt_dos-actors = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt_dos-clients = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt_dos-clients_arrow = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt_dos-clients_fem = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt-fem = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt_dos-clients_io = {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+gmt_dos-actors-clients_interface= {git="https://github.com/rconan/dos-actors.git", branch="gmt-im-seismic"}
+
