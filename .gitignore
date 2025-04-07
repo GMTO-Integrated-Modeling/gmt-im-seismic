@@ -1,5 +1,7 @@
 /target
 /rle_acc_locked_mnt/target
+/rle_acc_locked_mnt/*.png
+/rle_acc_locked_mnt/*.eps
 *.parquet
 *.mat
 *.asv
